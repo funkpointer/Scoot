@@ -2,12 +2,16 @@
 <html>
 <head>
   <title>Mewolentine 💖</title>
+
+  <!-- Cute Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #3b3b3b, #222222);
+      font-family: 'Quicksand', sans-serif;
+      background: radial-gradient(circle at top, #3b3b3b, #111111);
       overflow: hidden;
       position: relative;
     }
@@ -15,32 +19,41 @@
     h1 {
       text-align: center;
       margin-top: 120px;
-      font-size: 32px;
+      font-size: 38px;
+      color: white;
+      text-shadow: 0 0 15px rgba(255,153,171,0.8);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
     button {
       padding: 15px 30px;
       font-size: 18px;
       border-radius: 50px;
-      border: none;
+      border: 2px solid #ff99ab;
+      background: black;
+      color: #ff99ab;
       cursor: pointer;
       position: absolute;
-      transition: 0.2s;
+      transition: all 0.2s ease;
       z-index: 2;
     }
 
+    button:hover {
+      box-shadow: 0 0 15px #ff99ab;
+      transform: scale(1.05);
+    }
+
     #yesBtn {
-      background: black;
-      color: #ff99ab;
-      border: 2px solid #ff99ab;
-      left: 55%;
+      left: 40%;
       top: 50%;
     }
 
     #noBtn {
-      background: black;
-      color: #ff99ab;
-      border: 2px solid #ff99ab;
       left: 55%;
       top: 50%;
     }
@@ -50,24 +63,21 @@
       width: 100%;
       text-align: center;
       top: 65%;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
+      color: white;
+      text-shadow: 0 0 20px #ff99ab;
       z-index: 2;
     }
 
     .cat {
       position: absolute;
-      font-size: 30px;
       animation: fall linear forwards;
     }
 
     @keyframes fall {
-      from {
-        transform: translateY(-50px);
-      }
-      to {
-        transform: translateY(110vh);
-      }
+      from { transform: translateY(-50px) rotate(0deg); }
+      to { transform: translateY(110vh) rotate(360deg); }
     }
   </style>
 </head>
@@ -81,7 +91,7 @@
 
   <div id="response"></div>
 
-  <!-- Confetti library -->
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
@@ -91,32 +101,26 @@
       const maxX = window.innerWidth - noBtn.offsetWidth;
       const maxY = window.innerHeight - noBtn.offsetHeight;
 
-      const randomX = Math.random() * maxX;
-      const randomY = Math.random() * maxY;
-
-      noBtn.style.left = randomX + "px";
-      noBtn.style.top = randomY + "px";
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
     }
 
     noBtn.addEventListener("mouseenter", moveButton);
 
     function sayYes() {
-      // Move Yes button out of the way
       document.getElementById("yesBtn").style.display = "none";
       document.getElementById("noBtn").style.display = "none";
 
       document.getElementById("response").innerText =
         "YAYYYYY 🥰💖 Best decision ever.";
 
-      // Confetti burst
       confetti({
-        particleCount: 200,
-        spread: 100,
+        particleCount: 250,
+        spread: 120,
         origin: { y: 0.6 }
       });
 
-      // Falling cats
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 30; i++) {
         createCat();
       }
     }
@@ -127,13 +131,12 @@
       cat.innerText = "🐱";
 
       cat.style.left = Math.random() * window.innerWidth + "px";
+      cat.style.fontSize = (Math.random() * 20 + 20) + "px";
       cat.style.animationDuration = (Math.random() * 3 + 2) + "s";
 
       document.body.appendChild(cat);
 
-      setTimeout(() => {
-        cat.remove();
-      }, 5000);
+      setTimeout(() => cat.remove(), 5000);
     }
   </script>
 
