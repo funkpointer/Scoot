@@ -6,36 +6,32 @@
     body {
       margin: 0;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
       overflow: hidden;
+      position: relative;
     }
 
     h1 {
-      position: absolute;
-      top: 20%;
-      width: 100%;
       text-align: center;
+      margin-top: 120px;
       font-size: 32px;
     }
 
     button {
       padding: 15px 30px;
       font-size: 18px;
-      border: none;
       border-radius: 50px;
+      border: none;
       cursor: pointer;
       position: absolute;
-      transition: 0.2s ease;
+      transition: 0.15s;
     }
 
     #yesBtn {
       background: #ff4d6d;
       color: white;
-      left: 45%;
+      left: 40%;
       top: 50%;
     }
 
@@ -48,10 +44,8 @@
     }
 
     #response {
-      position: absolute;
-      top: 65%;
-      width: 100%;
       text-align: center;
+      margin-top: 300px;
       font-size: 24px;
       font-weight: bold;
     }
@@ -70,5 +64,24 @@
   <script>
     const noBtn = document.getElementById("noBtn");
 
-    noBtn.addEventListener("mouseenter", () => {
-      const maxX = window.innerWidth - 100;
+    function moveButton() {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
+
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveButton);
+
+    function sayYes() {
+      document.getElementById("response").innerText =
+        "YAYYYYY 🥰💖 Best decision ever.";
+    }
+  </script>
+
+</body>
+</html>
