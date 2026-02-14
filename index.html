@@ -14,14 +14,12 @@
       overflow: hidden;
     }
 
-    .container {
-      text-align: center;
-      position: relative;
-    }
-
     h1 {
+      position: absolute;
+      top: 20%;
+      width: 100%;
+      text-align: center;
       font-size: 32px;
-      margin-bottom: 40px;
     }
 
     button {
@@ -31,24 +29,29 @@
       border-radius: 50px;
       cursor: pointer;
       position: absolute;
-      transition: all 0.2s ease;
+      transition: 0.2s ease;
     }
 
     #yesBtn {
       background: #ff4d6d;
       color: white;
-      left: -80px;
+      left: 45%;
+      top: 50%;
     }
 
     #noBtn {
       background: white;
       color: #ff4d6d;
       border: 2px solid #ff4d6d;
-      left: 80px;
+      left: 55%;
+      top: 50%;
     }
 
     #response {
-      margin-top: 100px;
+      position: absolute;
+      top: 65%;
+      width: 100%;
+      text-align: center;
       font-size: 24px;
       font-weight: bold;
     }
@@ -57,24 +60,15 @@
 
 <body>
 
-  <div class="container">
-    <h1>Will you be my mewolentine? 💕</h1>
+  <h1>Will you be my mewolentine? 💕</h1>
 
-    <button id="yesBtn" onclick="sayYes()">Yes</button>
-    <button id="noBtn">No</button>
+  <button id="yesBtn" onclick="sayYes()">Yes</button>
+  <button id="noBtn">No</button>
 
-    <div id="response"></div>
-  </div>
+  <div id="response"></div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
-
-    function sayYes() {
-      document.getEleme
+    noBtn.addEventListener("mouseenter", () => {
+      const maxX = window.innerWidth - 100;
