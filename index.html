@@ -25,7 +25,8 @@
       border: none;
       cursor: pointer;
       position: absolute;
-      transition: 0.15s;
+      transition: 0.2s;
+      z-index: 2;
     }
 
     #yesBtn {
@@ -44,10 +45,28 @@
     }
 
     #response {
+      position: absolute;
+      width: 100%;
       text-align: center;
-      margin-top: 300px;
-      font-size: 24px;
+      top: 65%;
+      font-size: 28px;
       font-weight: bold;
+      z-index: 2;
+    }
+
+    .cat {
+      position: absolute;
+      font-size: 30px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-50px);
+      }
+      to {
+        transform: translateY(110vh);
+      }
     }
   </style>
 </head>
@@ -60,6 +79,9 @@
   <button id="noBtn">No</button>
 
   <div id="response"></div>
+
+  <!-- Confetti library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -78,8 +100,39 @@
     noBtn.addEventListener("mouseenter", moveButton);
 
     function sayYes() {
+      // Move Yes button out of the way
+      document.getElementById("yesBtn").style.display = "none";
+      document.getElementById("noBtn").style.display = "none";
+
       document.getElementById("response").innerText =
         "YAYYYYY 🥰💖 Best decision ever.";
+
+      // Confetti burst
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+
+      // Falling cats
+      for (let i = 0; i < 25; i++) {
+        createCat();
+      }
+    }
+
+    function createCat() {
+      const cat = document.createElement("div");
+      cat.classList.add("cat");
+      cat.innerText = "🐱";
+
+      cat.style.left = Math.random() * window.innerWidth + "px";
+      cat.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+      document.body.appendChild(cat);
+
+      setTimeout(() => {
+        cat.remove();
+      }, 5000);
     }
   </script>
 
