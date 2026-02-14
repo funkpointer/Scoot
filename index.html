@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For You ❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Open When...</h1>
+    <button onclick="showMessage(0)">You're sad</button>
+    <button onclick="showMessage(1)">You miss me</button>
+    <button onclick="showMessage(2)">You need a smile</button>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const messages = [
+      "I'm always on your team. Always.",
+      "Missing you just means we’re lucky to have something worth missing.",
+      "You’re my favorite person. That’s not changing."
+    ];
+
+    function showMessage(index) {
+      document.getElementById("message").innerText = messages[index];
+    }
+  </script>
+</body>
+</html>
